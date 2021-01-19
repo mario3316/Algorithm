@@ -132,3 +132,26 @@
     - 0o로 시작하는 str이 나오기때문에 8진수 값만 취하려면 [2:] 로 slice
   - 16진수 변환 hex(num)
     - 0x로 시작하는 str이 나오기때문에 16진수 값만 취하려면 [2:] 로 slice
+
+---
+
+- 2021/01/19 JAVA로 변경
+
+  - ArrayList<Integer> my_list = new ArrayList<Integer>();
+    (Wrapper 클래스로 선언)
+
+    - my_list.add(8) : 삽입
+    - my_list.remove(7) : 삭제
+    - my_list.clear() : 전체 삭제
+    - my_list.size() : 크기 구하기
+    - 반복문 for(Integer : my_list) 로 반복
+    - Iterator iter = my_list.iterator();
+      while(iter.hasNext()) 로 반복
+
+  - 문자열을 숫자로 변환
+
+    - Integer.parseInt(myString)
+
+  - 배열 Sort
+    - Arrays.sort(arr) : 오름차순 정렬
+    - Arrays.sort(arr, Collections.reverseOrder()) : 내림차순 정렬
