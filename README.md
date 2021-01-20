@@ -155,3 +155,44 @@
   - 배열 Sort
     - Arrays.sort(arr) : 오름차순 정렬
     - Arrays.sort(arr, Collections.reverseOrder()) : 내림차순 정렬
+
+- 2021/01/20
+
+  - System.currentTimeMills()
+
+    - 1970.1.1부터 경과한 시간을 밀리초로 반환
+
+  - 배열 API
+
+    - Arrays.toString(arr) : 배열을 스트링형태로 바꿔줌
+    - 깊은 복사
+      - int[] new_arr = arr.clone();
+      - System.arraycopy(src, srcPos, dst, dstPos, length);
+
+  - 4방, 8방 탐색
+
+    - 4방 // 상 부터 시계 방향
+      - int[] dr = {-1, 0, 1, 0}
+      - int[] dc = { 0, 1, 0, -1}
+    - 8방 // 상 부터 시계 방향
+      - int[] dr = { -1, -1, 0, 1, 1, 1, 0, -1 }
+      - int[] dc = { 0, 1, 1, 1, 0, -1, -1, -1 }
+
+  - 자바 코딩테스트 입력받을 때
+
+    1. Scanner
+
+       - Scanner sc = new Scanner(System.in);
+       - T = sc.nextInt();
+       - for문 안에서 String line = sc.next(); String[] bc = line.split(" ");
+
+    2. BufferedReader
+
+    - BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    - StringTokenizer st = null;
+    - T = Integer.parseInt(br.readLine());
+    - for문 안에서 st = new StringTokenizer(br.readLine());
+    - 한 문장에 여러 정수 입력받을때
+      - num[i] = Integer.parseInt(st.nextToken());
+      - 정수 개수 모를때
+        - for(int i=0; st.hasMoreTokens(); i++)
