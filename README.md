@@ -196,3 +196,57 @@
       - num[i] = Integer.parseInt(st.nextToken());
       - 정수 개수 모를때
         - for(int i=0; st.hasMoreTokens(); i++)
+
+- 2021/01/21
+
+  - String에 대해서
+
+    - String 끼리 비교할때는 == 이 아닌 equals 로 비교할것 ( Reference Type )
+      - String s1 = "hello";
+      - String s2 = "hello";
+      - String s3 = new String("hello");
+      - s1 == s2 : true // s1과 s2는 같은 "hello" 주소를 참조함
+      - s2 == s3 : false // new로 생성된 hello는 무조건 따로 Allocation
+      - s2.equals(s3) : true // String의 내용만을 비교하려면 equals 사용
+    - String + 다른타입은 모두 String이 됨
+    - String을 char로 바꾸는 메소드 : charAt( )
+    - String을 char [] 로 바꾸는 메소드 toCharArray( )
+    - String Concat
+      - - 이용
+      - String Builder 이용
+        - StringBuilder sb = new StringBuilder("");
+        - String[] strArray = {"hello", ", " , "world"};
+        - sb.setLength(0);
+        - for( String s: strArray)
+          - sb.append(s);
+
+  - Encapsulation
+
+    - private ( private < default < public )
+    - package
+    - Interface
+      - 정의만 해놓은 껍데기
+      - Implements로 구현함
+
+  - Inheritance
+
+    - 자식이 생성될때 부모가 생성됨(heap)
+      - super()를 이용해서 부모의 생성자도 호출됨
+    - 자식의 설계도가 올라가려면 부모가 먼저 올라가야 함
+    - 생성된 주소는 부모의 주소 (heap)
+    - 설계도에 공개된 메소드만 사용할 수 있다
+
+  - Object 4개 메소드 ( Object class는 자동으로 상속 )
+
+    - hashCode( ) : 두 객체가 같은 객체인지 확인 ( hashCode로 비교 )
+    - toString( ): 객체의 값들을 문자열로 만들어 return
+    - equals( ) : 내용이 같아도 hash code가 달라서 모든 reference type은 false가 기본인데 String만 예외
+    - getClass( ) : 객체가 참조하고 있는 class를 return
+    - 위 4개 Method는 Overriding할 수 있음
+
+  - 자바 메모리 구조
+
+  ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18d1404c-0445-4ae5-8821-2376f792623c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18d1404c-0445-4ae5-8821-2376f792623c/Untitled.png)
+
+  - Getter와 Setter를 사용해야하는 이유
+    - 처리 로직이 변경되는 경우 그에 쉽게 대응할 수 있다
