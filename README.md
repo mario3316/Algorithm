@@ -249,4 +249,24 @@
   ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18d1404c-0445-4ae5-8821-2376f792623c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18d1404c-0445-4ae5-8821-2376f792623c/Untitled.png)
 
   - Getter와 Setter를 사용해야하는 이유
+
     - 처리 로직이 변경되는 경우 그에 쉽게 대응할 수 있다
+
+  - Java 문자열 정렬
+
+    - String을 String[] strArr = str.split("") 으로 잘라서 배열로 만듬
+    - Arrays.sort(strArr) 로 정렬
+    - String.join("", strArr)로 합치기
+
+  - Java 배열 내림차순 정렬
+    - Arrays.sort(array, Collections.reverseOrder());
+
+- 2021/01/22
+  - Polymorphism
+    - 부타자생 : 부모 타입으로 자식을 생성
+    - 부타자참 : 부모 타입으로 자식을 참조
+    - 부메자호: 부모 메소드로 자식을 호출 (Overriding)
+    - A가 부모이고 B가 자식일때
+      - A a = new B();
+        - 자식을 부모의 타입으로 생성할 수 있음
+        - 이때 같은 메소드가 자식에게도 있다면 그 메소드를 호출할시 자식의 메소드가 호출 됨
