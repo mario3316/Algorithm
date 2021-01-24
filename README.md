@@ -262,6 +262,7 @@
     - Arrays.sort(array, Collections.reverseOrder());
 
 - 2021/01/22
+
   - Polymorphism
     - 부타자생 : 부모 타입으로 자식을 생성
     - 부타자참 : 부모 타입으로 자식을 참조
@@ -270,3 +271,18 @@
       - A a = new B();
         - 자식을 부모의 타입으로 생성할 수 있음
         - 이때 같은 메소드가 자식에게도 있다면 그 메소드를 호출할시 자식의 메소드가 호출 됨
+
+- 2021/01/24
+
+  - char Array to String
+
+    - String str = new String(charArray);
+    - StringBuilder sb = new StringBuilder();
+      for(char ch: charArray)
+      sb.append(ch);
+      String str = sb.toString();
+
+  - char 대문자 / 소문자
+    - Character.toUpperCase('a');
+    - Character.toLowerCase('A');
+    - 혹은 아스키코드 97 - 65 차이를 이용해 변환
