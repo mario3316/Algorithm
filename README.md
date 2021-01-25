@@ -264,6 +264,7 @@
 - 2021/01/22
 
   - Polymorphism
+
     - 부타자생 : 부모 타입으로 자식을 생성
     - 부타자참 : 부모 타입으로 자식을 참조
     - 부메자호: 부모 메소드로 자식을 호출 (Overriding)
@@ -272,17 +273,55 @@
         - 자식을 부모의 타입으로 생성할 수 있음
         - 이때 같은 메소드가 자식에게도 있다면 그 메소드를 호출할시 자식의 메소드가 호출 됨
 
-- 2021/01/24
+  - 2021/01/24
 
-  - char Array to String
+    - char Array to String
 
-    - String str = new String(charArray);
-    - StringBuilder sb = new StringBuilder();
-      for(char ch: charArray)
-      sb.append(ch);
-      String str = sb.toString();
+      - String str = new String(charArray);
+      - StringBuilder sb = new StringBuilder();
+        for(char ch: charArray)
+        sb.append(ch);
+        String str = sb.toString();
 
-  - char 대문자 / 소문자
-    - Character.toUpperCase('a');
-    - Character.toLowerCase('A');
-    - 혹은 아스키코드 97 - 65 차이를 이용해 변환
+    - char 대문자 / 소문자
+      - Character.toUpperCase('a');
+      - Character.toLowerCase('A');
+      - 혹은 아스키코드 97 - 65 차이를 이용해 변환
+
+  - 2021/01/25
+
+    - default vs protected
+
+      - default
+        - 동일 패키지에서 접근 가능
+        - 자식 클래스에서 접근 불가능
+      - protected
+        - 동일 패키지에서 접근 가능
+        - 자식 클래스에서 접근 가능 ( 상속 o )
+      - 하위 클래스에서 직접 접근하려면 protected나 public으로 선언해야 함
+
+    - this / super
+
+      - 자식 클래스에서 this를 썼는데 해당 변수가 없으면 부모 클래스의 멤버에서 찾는다
+      - 하지만 부모 멤버를 올바르게 접근하는 것은 super 키워드
+
+    - 모든 Class 들은 기본적으로 java.lang.Object를 상속받는다 (extends Object 생략)
+    - this() 는 이미 있는 생성자를 의미
+
+    - Singletone
+
+      - 생성자를 private으로 선언
+      - 자기 객체를 private static으로 선언한 후 public static getInstance 메소드로 이 객체를 반환
+
+      ```
+      private static BookManager manager = new BookManager();
+
+      private BookManager() {
+        super();
+        books = new Book[MAX_SIZE];
+      }
+
+      public static BookManager getInstance() {
+        return manager;
+      }
+      ```
