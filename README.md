@@ -325,3 +325,12 @@
         return manager;
       }
       ```
+
+    - Char 대/소문자 확인
+
+      - Character.isUpperCase(c);
+      - Character.isLowerCase(c);
+      - return type : boolean
+
+    - Char을 null로 초기화 하려면 Char c = 0;
+      - Char c = null / Char c = '' 불가능
