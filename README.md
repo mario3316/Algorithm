@@ -5,7 +5,7 @@
 ### TODO
 
 - 프로그래머스 1단계, 2단계, 3단계
-- 파이썬 문법 익히기
+- BOJ 2564 풀기
 
 ---
 
@@ -24,118 +24,15 @@
 - Programmers
 
   - Lv.1
-    - ~~크레인 인형뽑기 게임 (2019 카카오 겨울 인턴 코딩테스트)~~
-    - ~~두개 뽑아서 더하기~~
-    - ~~완주하지 못한 선수~~
-    - ~~모의고사~~
-    - ~~체육복~~
-    - ~~2016년~~
-    - ~~3진법 뒤집기~~
-    - ~~비밀지도 (2018 카카오 코딩테스트 1차)~~
 
 - BOJ
+  - 2564 경비원
 
 ---
 
 ### 새롭게 익힌 사실
 
-- 2021/01/12
-
-  - List의 맨 마지막 요소를 접근하려면 -1 인덱스를 사용 (단, 리스트가 비어있지 않아야 함)
-  - 파이썬은 ++, -- 가 되지 않는다. a += 1 같은 식으로 해야함
-  - 파이썬은 not연산자 (!) 를 지원하지 않는다 -> not
-  - 배열을 반복문으로 참조할때
-    - for i in list로 하면 index가 아닌 list의 값들을 참조
-    - 인덱스로 반복하려면 for i in range(len(list))를 사용
-  - List에서 인덱스로 요소를 삭제할때 del, remove, pop이 있음 -> 더 찾아볼 것
-
-- 2021/01/14
-
-  - 리스트 정렬 list.sort()
-  - 리스트 거꾸로 뒤집기 list.reverse()
-  - 리스트 정렬된 결과 반환 sorted_list = sorted(original_list)
-  - 리스트에 요소 있는지 확인 if num in list: / else :
-  - Hash 자료구조
-
-    - Key, Value 쌍
-    - 파이썬에서는 Dictionary 형태로 구현
-    - 장점 : 데이터 저장 / 검색 속도가 빠르다
-    - 단점 : 저장공간이 많이 필요하다
-    - 시간복잡도
-      - 일반적인 경우 : O(1)
-      - 최악의 경우 : O(n)
-        ![Hash](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FRf9ew%2FbtqBD2nxuS2%2FNcjU5klHVOqPfEm28syiFk%2Fimg.png)
-
-  - 딕셔너리
-
-    - d = { } 로 선언 (필수)
-    - d['age'] = 27 // age 라는 Key로 27이라는 Value 삽입
-    - d['age'] // key로 Value에 접근
-    - d.get('age') // Key로 Value 검색
-    - 'age' in d // 'age' 라는 Key가 딕셔너리에 존재하는가 ?
-    - d.keys() // 딕셔너리의 모든 Key 들을 List로 반환
-    - d.values() // 딕셔너리의 모든 Value 들을 List로 반환
-    - 위 두 List를 정렬하고 싶다면 sorted(d.keys()), sorted(d.values())
-    - d.items() // 딕셔너리의 모든 Key, Value 쌍을 Tuple의 List형태로 반환
-    - Value로 Key 찾기
-      - dict = {'a': 1, 'b': 0, 'c': 0, 'd': 0}
-        for key, value in dict.items():
-        if value == 1:
-        print(key)
-
-  - List에서 인덱스로 삭제하려면 del(a[1])
-  - List로 값으로 삭제하려면 a.remove(3)
-  - 조합 구하기
-    - combinations(list, 2) : list 안에 2개의 요소로 구할 수 있는 모든 조합을 반환
-    - list(combinations(list,2)) 로 하면 모든 조합의 list
-  - Set (집합)
-
-    - 중복을 제외한 값들을 저장하고 싶을때 Set 사용
-    - 선언 s = set()
-    - 삽입 s.add(2)
-    - 삭제 s.remove(2)
-
-  - List Comprehense
-
-    - [A for B in C]
-      - A : 리스트에 저장될 형태
-      - B : C를 순회하는 요소
-      - ex) new_list = [x+1 for x in range(10)]
-        : 1~10까지 담은 새로운 리스트 생성
-
-  - enumerate()
-    - 반복문 사용시 몇번째 반복문인지 확인하고 싶을때 (즉, index가 필요할때)
-    - 인덱스 번호와 원소를 tuple형태로 반환
-    - for i, value in enumerate(my_list):
-
-- 2021/01/15
-
-  - set으로 차집합 구현 가능 ( A 리스트에는 있고 B 리스트에는 없는 것을 찾고싶을때)
-    - new_list = set(A) - set(B)
-  - 리스트 slice
-    - [인덱스a이상: 인덱스b미만]
-    - a[0:2] : 0,1 인덱스
-    - a[0:] : 0부터 끝까지
-    - a[:3] : 0부터 2까지
-
-- 2021/01/16
-
-  - 파이썬은 정수끼리 나누기 ( / ) 하면 실수가 나옴 ( 5 / 2 == 2.5)
-  - 원래처럼 몫만 나오게 하려면 // 연산 사용 ( 5 // 2 == 2 )
-  - list 뒤집기 list.reverse()
-  - x의 y 승 구하기 : x\*\*y
-
-- 2021/01/17
-  - 2진수 변환 bin(num)
-    - 0b로 시작하는 str이 나오기때문에 2진수 값만 취하려면 [2:] 로 slice
-  - 8진수 변환 oct(num)
-    - 0o로 시작하는 str이 나오기때문에 8진수 값만 취하려면 [2:] 로 slice
-  - 16진수 변환 hex(num)
-    - 0x로 시작하는 str이 나오기때문에 16진수 값만 취하려면 [2:] 로 slice
-
----
-
-- 2021/01/19 JAVA로 변경
+- 2021/01/19 JAVA
 
   - ArrayList<Integer> my_list = new ArrayList<Integer>();
     (Wrapper 클래스로 선언)
@@ -244,10 +141,6 @@
     - getClass( ) : 객체가 참조하고 있는 class를 return
     - 위 4개 Method는 Overriding할 수 있음
 
-  - 자바 메모리 구조
-
-  ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18d1404c-0445-4ae5-8821-2376f792623c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/18d1404c-0445-4ae5-8821-2376f792623c/Untitled.png)
-
   - Getter와 Setter를 사용해야하는 이유
 
     - 처리 로직이 변경되는 경우 그에 쉽게 대응할 수 있다
@@ -334,3 +227,134 @@
 
     - Char을 null로 초기화 하려면 Char c = 0;
       - Char c = null / Char c = '' 불가능
+
+  - 2021/01/26
+
+    - 다형성 Polymorphism
+
+      - Type과 Method로 크게 나누어서 생각할 수 있음
+      - Method는 Overloading 과 Overriding으로 나뉨
+
+        - Overloading : name이 같아도 parameter가 다름
+        - Overriding : 부모 Class 의 메소드를 자식 Class에서 재정의함
+
+      - 부모의 Type으로 자식 Type의 객체를 Reference 할 수 있다.
+      - Phone p = new Samsung( );
+
+        - p.toString(); // 부모 타입으로 자식을 생성하면 자식에서 Overriding한 메소드만 호출 가능
+        - p.showInfo( ); // 자식에만 있는 멤버 변수나 메소드는 접근 불가능
+
+          → 재정의 (Overriding) 된 자식에 대해서만 부모 타입으로 변수를 선언하고 자식의 재정의된 메소드를 호출할 수 있다.
+
+          Object x = new Corona();
+
+          → Object 는 호출 범위
+
+          → Corona는 호출 대상
+
+          → 즉, Object가 같고있는 것에 한해서만 Corona에서 호출
+
+      - Overloading 한 메소드는 서로 다른 메소드가 됨
+
+        - C의 a는 A의 a와 서로 다른 메소드
+        - C의 b는 B의 b와 서로 다른 메소드
+
+        → Overloading 된것은 아예 다른 메소드로 생각
+
+      - Overriding 관계
+
+        - D의 b 는 B의 b 를 Overriding
+        - E의 b 는 D 의 b를 Overriding
+
+        → Overriding을 하지 않으면? 기본적으로 상속받아 가지고 있는 메소드
+
+      - @Overriding Annotation
+
+        - 특정 Method를 재정의 하겠다고 컴파일러에게 명시하는 것
+        - 만약 부모 클래스에 해당 Method가 없으면 Compile 오류
+
+    - Interface
+
+      - Method의 추상화
+      - 어떤 Class에 기능적인 요소를 추가하고 싶을때 사용
+      - 선언부만 기술하고 구현부는 없음
+      - default method : 구현하지 않아도 바로 사용할수 있는 메소
+      - Method의 access modifier 를 생략하면 기본적으로 public이 된다
+      - Interface에서 변수를 선언하면 public static final 로 상수를 선언한것과 같다.
+
+    - 추상 Class
+
+      - abstract keyword
+      - 추상 method가 하나라도 있으면 추상 Class
+      - 추상 클래스더라도 반드시 추상 Method가 있는것은 아님 ( 없을 수도 있는데 이 때 abstract class 의 용도는 상속 강요 )
+      - 모든 Method가 abstract이면 Interface와 같다
+
+    - 추상 Method
+
+      - Body가 없는 Method
+      - public void say(){ } ⇒ public abstract void say( )
+
+    - Adapter
+
+      - 인터페이스가 많아서 직접 모두 구현하는 부담을 덜기위해 추상 Class로 중간 단계를 구현
+      - Adapter에서는 Interface에서 구현하고자 하는 메소드를 구현하고 구현 안하는 메소드는 abstract로 남겨둠
+      - 원래 Interface를 Implement 해야하는 클래스에서 이 Adapter를 상속받아 사용
+
+    - instanceof
+
+      - 참조될수 있는 Type인지 확인하고 결과를 boolean으로 return 함
+
+    - Inner Class
+
+      - 클래스 내부에 생성한 클래스
+      - 멤버 변수의 하나 처럼 클래스를 정의할 수 있다
+      - 클래스 내부에서 new로 생성하고 사용
+
+    - Anonymous Class
+
+      - 이름이 없이 만들어지는 inner Class
+      - 이름이 없으므로 재사용되지 않고 한번만 사용됨
+
+      af.setFolder(new Folder() {
+
+      @Override
+      public void fold() {
+      System.out.println("Anonymous-fold");
+      }
+
+      @Override
+      public void open() {
+      System.out.println("Anonymous-open");
+      }
+
+      });
+
+    - final class
+
+      - 자식을 더이상 생성하지 못함
+
+    - static Block
+
+      - 처음 Instance가 만들어질때(Heap에 올라갈 때) 단 한번만 실행되는 코드
+
+    - contains( )
+      - 특정 문자열을 포함하는지 판별
+      - book.contains(title)
+      - return type : boolean
+
+  - 2021/01/27
+
+    - Collection
+
+      - 자료를 구조적으로 정리한 Interface
+      - Set, List, Map
+        - Set : 집합 (중복 불가능), 순서가 없고 중복이 없는 자료구조
+          - HashSet, TreeSet
+          - Tree Set만 사전으로 정렬됨
+      - List: 순서가 있는 자료 구조
+        - Array List
+        - Linked List ( Queue )
+
+    - Final
+      - Final Class : 상속 불가능
+      - Final Method : Overriding 불가능
