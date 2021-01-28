@@ -358,3 +358,128 @@
     - Final
       - Final Class : 상속 불가능
       - Final Method : Overriding 불가능
+
+  - 2021/01/28
+
+    - Generic < >
+
+      - Type을 Dynamic하게 지정할 수 있는 방법을 제공
+      - 모든 타입들을 전부 코드를 만드는 시점(.java 파일 생성) 에 다 받아들일수 있는 일반화된 타입
+
+      ```
+      public class GenericContainer<T> {
+      private T obj;
+
+      public GenericContainer(){}
+
+      public T getObj() { return obj; }
+
+      public void setObj(T t) { obj = t; }
+
+      }
+      ```
+
+    - Collections API
+
+      - List (순서 o 중복 o)
+        - LinkedList
+        - Stack
+        - ArrayList
+      - Set (순서 x 중복x)
+        - HashSet
+        - TreeSet
+      - Queue (순서 o 중복 o)
+        - LinkedList
+        - PriorityQueue
+      - Map (Key-Value 쌍, 순서 x, Key중복x, Value중복 o)
+        - HashTable
+        - HashMap
+        - TreeMap
+
+    - iterator
+
+      - Collection을 순회하기 위한 interface
+      - hasNext() : 다음이 있으면 true, 없으면 false
+      - next(): 다음 요소를 return
+
+        Iterator<Patient> itr = patientList.iterator();
+        while(itr.hasNext()){
+        Patient p = itr.next();
+        System.out.println(p);
+        }
+
+    - PriorityQueue
+
+      - 정렬을 하는 기준인 Comparable Interface를 구현해야 함
+
+        - CompareTo( ) : 우선순위 비교 메소드
+        - public Class Corona implements Comparable<Corona>
+        - @Override
+
+          public int compareTo(Corona c) {
+
+          return this.spreadSpeed - c.spreadSpeed;
+
+          }
+
+        - Comparable Interface를 상속받은 다음에 compareTo 메소드를 오버라이딩 해야 함
+        - offer() : 요소 추가
+        - poll(): 맨 앞 요소를 뽑아서 반환 ( Queue에서는 제거 됨)
+        - peek(): 맨 앞 요소를 반환 ( Queue에는 남아있음 )
+
+    - Comparable<T>
+
+      - Priority queue에 사용하는 비교 인터페이스
+      - 클래스 내부에 compareTo() 함수를 구현한다
+
+    - Comparator<T>
+
+      - compare( ) 함수 구현
+
+        ```
+        public int compare(int p1, int p2) {
+          if (p1 > p2) {
+            return 1; // 1은 뒤집음 (즉, 큰게 뒤로 (오름차순))
+          } else if (p1 < p2) {
+            return -1; // -1이면 그대로
+          } else
+            return 0;
+        }
+        ```
+
+      - ArrayList 정렬하기 (feat. Anonymous Class)
+
+        - Collections.sort( list, new Comparator<Integer>( ) {
+
+          public int compare(int p1, int p2) {
+
+          return p1 - p2; // 반대로 하면 내림차순
+
+          }
+
+          }
+
+    - Error vs Exception
+
+      - Error : System Level , StackOverflowError
+
+        코드나 환경적인 문제
+
+      - Exception : App level, IOException
+
+    - Exception
+
+      - RuntimeException : 실행시 발생되므로 예측할수 없음
+        - ex ) NullPointer, ArrayIndexOutOfBounds
+      - Other Exceptions : 예측 가능하므로 코드 작성시 처리
+        - ex) IOException, SQLException
+
+    - Exception 처리
+      - try-catch-finally
+        - try : Exception이 발생할수 있는 코드
+        - catch(A e) : Exception 발생시 실행하는 코드
+        - finally : Exception이 발생하든 안하든 반드시 실행되는 코드
+      - throws
+        - 나를 호출한 메소드에서 처리하도록 책임을 피함
+      - try-catch-throw
+        - 나도 처리하고 호출한 곳에서도 처리하고
