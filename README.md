@@ -475,6 +475,7 @@
         - ex) IOException, SQLException
 
     - Exception 처리
+
       - try-catch-finally
         - try : Exception이 발생할수 있는 코드
         - catch(A e) : Exception 발생시 실행하는 코드
@@ -483,3 +484,10 @@
         - 나를 호출한 메소드에서 처리하도록 책임을 피함
       - try-catch-throw
         - 나도 처리하고 호출한 곳에서도 처리하고
+
+    - 배열 List로 변환
+
+      - List<Integer> list = Arrays.asList(arr);
+
+    - List 거꾸로 뒤집기
+      - Collections.reverse(list);
