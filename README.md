@@ -491,3 +491,35 @@
 
     - List 거꾸로 뒤집기
       - Collections.reverse(list);
+
+  - 2021/01/29
+
+    - String 객체 vs String 리터럴
+
+      - String 객체
+        - String str = new String("hello");
+        - 객체로 생성하면 Heap 영역에 생성됨
+      - String 리터럴
+        - String str = "hello";
+        - 리터럴로 생성하면 String Constance Pool 영역에 생성됨
+        - String str2 = "hello";
+          str == str3 : true
+        - 문자열이 같은 String 리터럴은 서로 같다 ( 둘다 같은 pool을 참조함)
+
+    - Collections
+
+      - Set / List
+        - add 로 추가
+          - add(a) : 맨뒤에 추가
+          - add(0,b) : 0번째에 추가후 나머지를 뒤로 밀음
+          - set(0,c) : 0번째에 덮어쓰기
+          - remove(인덱스), remove(객체) : 요소 제거
+          - get(인덱스): i번째 요소 확인
+      - Map
+        - put(key,value) : 추가
+        - get(key) : key에 해당하는 value 확인
+        - remove(key) : key value 삭제
+
+    - ArrayList to Array
+      - ArrayList<Integer> list = new ArrayList<>();
+      - int[] arr = list.toArray();
