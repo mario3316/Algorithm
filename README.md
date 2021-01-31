@@ -523,3 +523,7 @@
     - ArrayList to Array
       - ArrayList<Integer> list = new ArrayList<>();
       - int[] arr = list.toArray();
+
+  - 2021/01/31
+    - char -> int
+      - Character.getNumericValue('1');
