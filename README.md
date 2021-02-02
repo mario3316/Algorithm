@@ -530,5 +530,54 @@
       - int[] arr = list.toArray();
 
   - 2021/01/31
+
     - char -> int
       - Character.getNumericValue('1');
+
+  - 2021/02/02
+
+    - 완전탐색
+
+      - nPr (Permutation, 순열)
+      - nCr (Combination, 조합)
+      - 부분 집합
+
+    - 순열 Permutation
+      - 반복문을 통한 구현
+      - 재귀를 통한 구현
+
+    ```
+      int[] arr = { 1, 2, 3 }; // 3P3
+
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+          if (arr[j] != arr[i]) {
+            for (int k = 0; k < 3; k++) {
+              if (arr[k] != arr[i] && arr[k] != arr[j])
+                System.out.println(arr[i] + "-" + arr[j] + "-" + arr[k]);
+            }
+          }
+        }
+      }
+    ```
+
+    ```
+    static boolean[] isSelected = new boolean[5];
+    static int[] numbers = new int[5];
+
+    public static void perm(int cnt) {
+      if (cnt == 5) {
+        System.out.println(Arrays.toString(numbers));
+        return;
+      } else {
+        for (int i = 0; i < 5; i++) {
+          if (!isSelected[i]) { // 뽑히지 않았으면 뽑음
+            numbers[cnt] = i; // 저장
+            isSelected[i] = true; // 뽑았다고 표시
+            perm(cnt + 1);
+            isSelected[i] = false; // 끝나면 뽑았던 표시 제거
+          }
+        }
+      }
+    }
+    ```
