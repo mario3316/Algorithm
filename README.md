@@ -581,3 +581,23 @@
       }
     }
     ```
+
+    - 조합 Combination
+
+    ```
+
+    static int[] input = { 1, 2, 3, 4, 5 };
+    static int[] numbers = new int[2]; // 5C2 이므로 2개만 저장
+
+    public static void comb(int cnt, int start) {
+      if (cnt == numbers.length) {
+        System.out.println(Arrays.toString(numbers));
+        return;
+      } else {
+        for (int i = start; i < 5; i++) {
+          numbers[cnt] = input[i];
+          comb(cnt + 1, i + 1);
+        }
+      }
+    }
+    ```
