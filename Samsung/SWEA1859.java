@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class samsung_1859 {
+public class SWEA1859 {
 
 	static int N;
 

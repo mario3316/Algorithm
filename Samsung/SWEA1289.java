@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class samsung_1289 {
+public class SWEA1289 {
 
 	static int N;
 
