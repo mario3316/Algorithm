@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Solution_d2_1954_달팽이숫자 {
+public class SWEA1954 {
 
 	static int T;
 	static int N;
