@@ -63,9 +63,10 @@
     int[] arr = list.toArray();
     ```
   - List 거꾸로 뒤집기
-
-    - Collections.reverse(list);
-    - PriorityQueue
+    ```
+    Collections.reverse(list);
+    ```
+  - PriorityQueue
 
     - 정렬을 하는 기준인 Comparable Interface를 구현해야 함
 
@@ -126,13 +127,19 @@
   - String 객체 vs String 리터럴
 
     - String 객체
-      - String str = new String("hello");
+      ```
+      String str = new String("hello");
+      ```
       - 객체로 생성하면 Heap 영역에 생성됨
     - String 리터럴
-      - String str = "hello";
+      ```
+      String str = "hello";
+      ```
       - 리터럴로 생성하면 String Constance Pool 영역에 생성됨
-      - String str2 = "hello";
-        str == str3 : true
+      ```
+      String str2 = "hello";
+      str == str3 : true
+      ```
       - 문자열이 같은 String 리터럴은 서로 같다 ( 둘다 같은 pool을 참조함)
 
   - Collections
@@ -151,8 +158,10 @@
 
 - 2021/01/31
 
-  - char -> int
-    - Character.getNumericValue('1');
+  - char to int
+    ```
+    Character.getNumericValue('1');
+    ```
 
 - 2021/02/02
 
@@ -317,7 +326,10 @@
 
   - Stack
 
-    - 선언 : Stack<Object> S = new Stack<>();
+    - 선언
+      ```
+      Stack<Object> S = new Stack<>();
+      ```
     - push(Object o) : 요소를 Top에 추가
     - pop() : Top을 삭제
     - peek() : Top을 조회
@@ -325,7 +337,10 @@
     - search(Object o) : 요소가 스택의 몇번째에 있는지를 return
 
   - Queue
-    - 선언 : Queue<Object> Q = new LinkedList<>();
+    - 선언
+      ```
+      Queue<Object> Q = new LinkedList<>();
+      ```
     - offer(Object o) : 요소를 enqueue
     - poll(): 요소를 삭제하고 그 요소를 return
     - peek(): 첫번째 요소를 조회
