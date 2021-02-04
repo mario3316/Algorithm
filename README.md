@@ -53,10 +53,15 @@
 
 - 2021/01/28
 
-  - 배열 List로 변환
-
-    - List<Integer> list = Arrays.asList(arr);
-
+  - Array to ArrayList
+    ```
+    List<Integer> list = Arrays.asList(arr);
+    ```
+  - ArrayList to Array
+    ```
+    ArrayList<Integer> list = new ArrayList<>();
+    int[] arr = list.toArray();
+    ```
   - List 거꾸로 뒤집기
 
     - Collections.reverse(list);
@@ -65,14 +70,17 @@
     - 정렬을 하는 기준인 Comparable Interface를 구현해야 함
 
       - CompareTo( ) : 우선순위 비교 메소드
-      - public Class Corona implements Comparable<Corona>
-      - @Override
 
-        public int compareTo(Corona c) {
+        ```
+        public Class Corona implements Comparable<Corona>{
+          @Override
+          public int compareTo(Corona c) {
 
-        return this.spreadSpeed - c.spreadSpeed;
+            return this.spreadSpeed - c.spreadSpeed;
 
+          }
         }
+        ```
 
       - Comparable Interface를 상속받은 다음에 compareTo 메소드를 오버라이딩 해야 함
       - offer() : 요소 추가
@@ -140,10 +148,6 @@
       - put(key,value) : 추가
       - get(key) : key에 해당하는 value 확인
       - remove(key) : key value 삭제
-
-  - ArrayList to Array
-    - ArrayList<Integer> list = new ArrayList<>();
-    - int[] arr = list.toArray();
 
 - 2021/01/31
 
