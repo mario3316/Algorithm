@@ -18,7 +18,7 @@
 - Programmers
 
   - Lv.1
-  - 기능 개발 / https://programmers.co.kr/learn/courses/30/lessons/42586
+  - ~~기능 개발~~
 
 - BOJ
 
