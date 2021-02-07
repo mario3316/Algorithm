@@ -20,10 +20,9 @@ public class BOJ1074 {
 			System.out.println(cnt);
 			return;
 		} else {
-			int new_len = len / 2; // 길이를 반씩 줄여줌
-
 			// r,c 가 해당 하는 범위의 사분면만 재귀
-			if (nr <= r && r < nr + len && nc <= c && c < nc + len) {
+			if (isSame(nr,nc,len)) {
+				int new_len = len / 2; // 길이를 반씩 줄여줌
 				Recursion(nr, nc, new_len);
 				Recursion(nr, nc + new_len, new_len);
 				Recursion(nr + new_len, nc, new_len);
@@ -32,6 +31,13 @@ public class BOJ1074 {
 				cnt += len * len;
 		}
 
+	}
+
+	static boolean isIn(int nr, int nc, len){
+		if(nr <= r && r < nr + len && nc <= c && c < nc + len){
+			return true;
+		}else
+			return false;
 	}
 
 }
