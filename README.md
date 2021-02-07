@@ -32,6 +32,9 @@
   - ~~9663 N-Queen~~
   - ~~1074 Z~~
   - ~~10972 다음 순열~~
+  - ~~10973 이전 순열~~
+  - ~~10819 차이를 최대로~~
+  - 다음 순열, 이전 수열 다시 풀어보기
 
 - SW Expert
   - ~~1859 백만장자 프로젝트~~
@@ -292,7 +295,7 @@
   - Next Permutation
 
   ```
-  public static boolean next_permutation(int size) {
+  static boolean next_permutation(int size) {
       int i = size;
       while (i > 0 && p[i - 1] >= p[i])
         i--;
@@ -304,21 +307,48 @@
         while (p[i - 1] >= p[j]) // 피크 다음값보다 작은 바로 직전 값을 찾음
           j--;
 
-        int temp = p[i - 1]; // 이 값을 피크 다음 값과 스왑
-        p[i - 1] = p[j];
-        p[j] = temp;
+        swap(i-1, j);
 
         int k = size;
         while (i < k) { // 피크 뒷부분을 정렬
-          temp = p[i];
-          p[i] = p[k];
-          p[k] = temp;
+          swap(i, k);
           i++;
           k--;
         }
         return true;
       }
     }
+  ```
+
+  - Prev Permutation
+
+  ```
+  static boolean prev_permutation() {
+  	int i = input.length - 1;
+
+  	while (i > 0 && input[i - 1] <= input[i])
+  		i--;
+
+  	if (i == 0) {
+  		return false;
+  	} else {
+  		int j = i - 1;
+  		while (j + 1 < input.length && input[i - 1] >= input[j + 1])
+  			j++;
+
+  		swap(i - 1, j);
+
+  		int k = input.length - 1;
+
+  		while (i < k) {
+  			swap(i, k);
+  			i++;
+  			k--;
+  		}
+
+  		return true;
+  	}
+  }
   ```
 
 - 2021/02/04

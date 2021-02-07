@@ -19,7 +19,7 @@ class Solution {
             }else{
                 current = day[i];
             }
-        } // 현재 완료 일수보다 작은 뒤 작업들 덮어쓰기
+        } // 현재 완료 일수보다 작은 뒤 작업들 덮어쓰기 
         System.out.println(Arrays.toString(day));
         
         current = day[0];
@@ -32,7 +32,7 @@ class Solution {
                 L.add(cnt);
                 cnt = 1;
             }
-        } // 같은 일수 카운트해서 List에 넣기
+        } // 같은 일수 카운트해서 List에 넣기 // 
         L.add(cnt); // 마지막꺼
         
         answer = new int[L.size()];
