@@ -66,16 +66,16 @@
 - 2021/01/28
 
   - Array to ArrayList
-    ```
-    List<Integer> list = Arrays.asList(arr);
+    ```jsx
+    List < Integer > list = Arrays.asList(arr);
     ```
   - ArrayList to Array
-    ```
+    ```jsx
     ArrayList<Integer> list = new ArrayList<>();
     int[] arr = list.toArray();
     ```
   - List 거꾸로 뒤집기
-    ```
+    ```jsx
     Collections.reverse(list);
     ```
   - PriorityQueue
@@ -84,7 +84,7 @@
 
       - CompareTo( ) : 우선순위 비교 메소드
 
-        ```
+        ```jsx
         public Class Corona implements Comparable<Corona>{
           @Override
           public int compareTo(Corona c) {
@@ -109,7 +109,7 @@
 
     - compare( ) 함수 구현
 
-      ```
+      ```jsx
       public int compare(int p1, int p2) {
         if (p1 > p2) {
           return 1; // 1은 뒤집음 (즉, 큰게 뒤로 (오름차순))
@@ -122,7 +122,7 @@
 
     - ArrayList 정렬하기 (feat. Anonymous Class)
 
-      ```
+      ```jsx
       Collections.sort( list, new Comparator<Integer>( ) {
 
         public int compare(int p1, int p2) {
@@ -139,16 +139,16 @@
   - String 객체 vs String 리터럴
 
     - String 객체
-      ```
+      ```jsx
       String str = new String("hello");
       ```
       - 객체로 생성하면 Heap 영역에 생성됨
     - String 리터럴
-      ```
+      ```jsx
       String str = "hello";
       ```
       - 리터럴로 생성하면 String Constance Pool 영역에 생성됨
-      ```
+      ```jsx
       String str2 = "hello";
       str == str3  // true
       ```
@@ -171,8 +171,8 @@
 - 2021/01/31
 
   - char to int
-    ```
-    Character.getNumericValue('1');
+    ```jsx
+    Character.getNumericValue("1");
     ```
 
 - 2021/02/02
@@ -187,7 +187,7 @@
     - 반복문을 통한 구현
     - 재귀를 통한 구현
 
-  ```
+  ```jsx
     int[] arr = { 1, 2, 3 }; // 3P3
 
     for (int i = 0; i < 3; i++) {
@@ -202,7 +202,7 @@
     }
   ```
 
-  ```
+  ```jsx
   static boolean[] isSelected = new boolean[5];
   static int[] numbers = new int[5];
 
@@ -225,7 +225,7 @@
 
   - 조합 Combination
 
-  ```
+  ```jsx
 
   static int[] input = { 1, 2, 3, 4, 5 };
   static int[] numbers = new int[2]; // 5C2 이므로 2개만 저장
@@ -245,7 +245,7 @@
 
   - 중복 순열
 
-  ```
+  ```jsx
   public static void RepPerm(int cnt) {
       if (cnt == R) {
         System.out.println(Arrays.toString(output));
@@ -261,7 +261,7 @@
 
   - 중복 조합
 
-  ```
+  ```jsx
   public static void RepComb(int cnt, int start) {
       if (cnt == R) {
         System.out.println(Arrays.toString(output));
@@ -277,7 +277,7 @@
 
   - 부분 집합 (Subset, Powerset)
 
-  ```
+  ```jsx
   public static void SubSet(int cnt) {
       if (cnt == N) {
         for (int i = 0; i < N; i++) {
@@ -299,7 +299,7 @@
 
   - Next Permutation
 
-  ```
+  ```jsx
   static boolean next_permutation(int size) {
       int i = size;
       while (i > 0 && p[i - 1] >= p[i])
@@ -327,7 +327,7 @@
 
   - Prev Permutation
 
-  ```
+  ```jsx
   static boolean prev_permutation() {
   	int i = input.length - 1;
 
@@ -370,7 +370,7 @@
   - Stack
 
     - 선언
-      ```
+      ```jsx
       Stack<Object> S = new Stack<>();
       ```
     - push(Object o) : 요소를 Top에 추가
@@ -381,7 +381,7 @@
 
   - Queue
     - 선언
-      ```
+      ```jsx
       Queue<Object> Q = new LinkedList<>();
       ```
     - offer(Object o) : 요소를 enqueue
