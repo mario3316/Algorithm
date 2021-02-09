@@ -445,3 +445,25 @@
       }
     }
     ```
+
+  - 최단 거리
+
+    - 최단 거리를 구할때는 BFS로 짜는 것이 유리하다.
+    - BFS는 해당 노드에 도착하면 그 거리가 최단거리 이므로 바로 종료하면 된다.
+    - 하지만 DFS는 모든 경우를 최단거리를 갱신하며 탐색해야 되므로 비효율적이다.
+
+  - Character.isDigit(c)
+    - 매개변수로 넘긴 char이 숫자인지 아닌지를 판별해 주는 함수
+    ```jsx
+    char a = 'a';
+    char b = '9';
+    Character.isDigit(a); // False
+    Character.isDigit(b); // True
+    ```
+  - st.countTokens()
+
+    - StringTokenizer의 토큰을 세어주는 함수
+
+  - SWEA1233에 대해
+    - 위 두개 함수를 알았으면 Tree의 가장 말단 노드(Token이 2개거나 3개인 노드) 만 숫자여야 하고 그 위 모든 노드(Token이 4개인 노드) 들은 연산자여야 함을 판별해서 쉽게 풀수있었다.
+    - 나는 ArrayList로 Tree를 구현해서 일일이 중위 순회로 수식을 검사했다... ㅠ
