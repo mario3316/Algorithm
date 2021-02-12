@@ -1,38 +1,37 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class BOJ15900 {
 	// 인접행렬 -> 메모리 초과
-	static class Node {
-		int num;
-		ArrayList<Node> next;
-
-		Node(int num) {
-			this.num = num;
-			next = new ArrayList<Node>();
-		}
-	}
-
+	// Node 클래스 ArrayList -> 시간 초과
 	static int N;
-	static Node[] tree;
-	static boolean[] visited; // 방문 여부 저장
 	static int sum = 0;
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		N = sc.nextInt();
-		tree = new Node[N + 1];
-		for (int i = 1; i <= N; i++) {
-			tree[i] = new Node(i);
-		}
+	static ArrayList<ArrayList<Integer>> Tree = new ArrayList<>();
+	static boolean[] visited;
+
+	public static void main(String[] args) throws IOException {
+		// Scanner -> 시간초과
+		BufferedReader br = new BufferedReader(
+				new InputStreamReader(System.in));
+		StringTokenizer st = null;
+		N = Integer.parseInt(br.readLine());
+
+		for (int i = 0; i <= N; i++) {
+			Tree.add(new ArrayList<>());
+		} // 트리 생성
 		visited = new boolean[N + 1];
 
 		for (int i = 0; i < N - 1; i++) {
-			int a = sc.nextInt();
-			int b = sc.nextInt();
+			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
 
-			tree[a].next.add(tree[b]);
-			tree[b].next.add(tree[a]);
+			Tree.get(a).add(b);
+			Tree.get(b).add(a);
 		}
 
 		visited[1] = true;
@@ -48,13 +47,12 @@ public class BOJ15900 {
 
 	static void DFS(int from, int depth) {
 		// 현재 노드와 이어져 있고 방문하지 않았으면 방문
-		int linkCnt = tree[from].next.size();
-		for (int i = 0; i < linkCnt; i++) {
-			int nodeNum = tree[from].next.get(i).num;
-			if (!visited[nodeNum]) {
-				visited[i] = true;
-				DFS(nodeNum, depth + 1);
-				visited[i] = false;
+
+		for (int next : Tree.get(from)) {
+			if (!visited[next]) {
+				visited[next] = true;
+				DFS(next, depth + 1);
+				visited[next] = false;
 			}
 		}
 
@@ -62,7 +60,7 @@ public class BOJ15900 {
 		// 하지만 Leaf Node의 깊이만 총합에 더해야 하므로 Leaf Node인지를 검사 (연결된 노드가 부모만 있어야 하므로
 		// size == 1)
 
-		if (tree[from].next.size() == 1)
+		if (Tree.get(from).size() == 1)
 			sum += depth;
 	}
 
