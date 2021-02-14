@@ -60,7 +60,7 @@ public class BOJ15900 {
 		// 하지만 Leaf Node의 깊이만 총합에 더해야 하므로 Leaf Node인지를 검사 (연결된 노드가 부모만 있어야 하므로
 		// size == 1)
 
-		if (Tree.get(from).size() == 1)
+		if (from != 1 && Tree.get(from).size() == 1)
 			sum += depth;
 	}
 

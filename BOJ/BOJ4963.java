@@ -9,7 +9,7 @@ public class BOJ4963 {
 	static int[][] MAP;
 	static boolean[][] visited;
 	static int[] dr = { -1, -1, 0, 1, 1, 1, 0, -1 };
-	static int[] dc = { 0, 1, 1, 1, 0, -1, -1, -1 };
+	static int[] dc = { 0, 1, 1, 1, 0, -1, -1, -1 }; // 8방
 	static int cnt;
 
 	public static void main(String[] args) throws IOException {
@@ -33,12 +33,13 @@ public class BOJ4963 {
 				for (int j = 0; j < W; j++) {
 					MAP[i][j] = Integer.parseInt(st.nextToken());
 				}
-			}
+			} // 지도 입력
 
 			cnt = 0;
 
 			for (int i = 0; i < H; i++) {
 				for (int j = 0; j < W; j++) {
+					// 지도에서 Land 인것만 방문하지 않았으면 DFS 시작
 					if (!visited[i][j] && MAP[i][j] == 1) {
 						DFS(i, j);
 						cnt++;
@@ -56,7 +57,7 @@ public class BOJ4963 {
 		for (int i = 0; i < 8; i++) {
 			int nr = r + dr[i];
 			int nc = c + dc[i];
-
+			// 상하좌우 대각선이 땅이면 방문
 			if (isIn(nr, nc) && !visited[nr][nc] && MAP[nr][nc] == 1) {
 				DFS(nr, nc);
 			}
@@ -64,10 +65,7 @@ public class BOJ4963 {
 	}
 
 	static boolean isIn(int r, int c) {
-		if (r >= 0 && r < H && c >= 0 && c < W)
-			return true;
-		else
-			return false;
+		return r >= 0 && r < H && c >= 0 && c < W;
 	}
 
 }
