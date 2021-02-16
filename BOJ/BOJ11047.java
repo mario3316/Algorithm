@@ -18,10 +18,13 @@ public class BOJ11047 {
 
 		// 가치가 높은 동전부터 들어가는지 확인
 		for (int i = N - 1; i >= 0; i--) {
-			if (value[i] < K) {
+			if (value[i] <= K) {
 				int div = K / value[i]; // 몇개 들어가는지
 				cnt += div; // 사용한 동전 개수 증가
 				K -= (value[i] * div); // 남은 돈 계산
+
+				if (K == 0)
+					break;
 			}
 		}
 
