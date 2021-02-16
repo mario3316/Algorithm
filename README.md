@@ -5,10 +5,10 @@
 ### Study Flow
 
 - Implementation
-- **_Back Tracking_**
-- Greedy
 - BFS/DFS
-- DP
+- Back Tracking
+- **_Greedy_**
+- DP (LIS)
 - Hash
 
 ---
@@ -51,7 +51,7 @@
   - ~~1182 부분수열의 합~~
   - ~~6603 로또~~
   - ~~3040 백설공주와 일곱 난장이~~
-  - prev_permutation 공부
+  - DP, LIS 공부
 
 - SW Expert
   - ~~1859 백만장자 프로젝트~~
