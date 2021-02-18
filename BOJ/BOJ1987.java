@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 public class BOJ1987 {
 
 	static int R, C;
-	static String[][] MAP;
+	static char[][] MAP;
 	static int[] dr = { -1, 1, 0, 0 };
 	static int[] dc = { 0, 0, -1, 1 };
 	static int max = 0;
@@ -18,13 +18,13 @@ public class BOJ1987 {
 
 		R = Integer.parseInt(st.nextToken());
 		C = Integer.parseInt(st.nextToken());
-		MAP = new String[R][C];
+		MAP = new char[R][C];
 
 		for (int i = 0; i < R; i++) {
-			MAP[i] = br.readLine().split("");
+			MAP[i] = br.readLine().toCharArray();
 		}
 
-		Recursive(0, 0, MAP[0][0], 1);
+		Recursive(0, 0, Character.toString(MAP[0][0]), 1);
 		System.out.println(max);
 	}
 
@@ -34,7 +34,7 @@ public class BOJ1987 {
 			int nr = r + dr[i];
 			int nc = c + dc[i];
 
-			if (isIn(nr, nc) && !history.contains(MAP[nr][nc])) {
+			if (isIn(nr, nc) && !history.contains(Character.toString(MAP[nr][nc]))) {
 				Recursive(nr, nc, history + MAP[nr][nc], cnt + 1);
 			}
 		}
