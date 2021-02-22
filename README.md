@@ -17,7 +17,6 @@
 
 - Programmers
 
-  - Lv.1
   - ~~기능 개발~~
 
 - BOJ
