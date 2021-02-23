@@ -1,6 +1,7 @@
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -57,13 +58,21 @@ public class BOJ17135 {
 		int archerRow = N;
 
 		while (archerRow != 0) {
+			ArrayList<Point> list = new ArrayList<>();
+
 			for (int i = 0; i < 3; i++) {
 				Point e = BFS(tmap, new Point(archerRow, output[i]));
 
 				if (e.x == -1 && e.y == -1) {
 					continue;
 				} else {
-					tmap[e.x][e.y] = 0;
+					list.add(e);
+				}
+			}
+
+			for (Point p : list) {
+				if (tmap[p.x][p.y] == 1) {
+					tmap[p.x][p.y] = 0;
 					count++;
 				}
 			}
