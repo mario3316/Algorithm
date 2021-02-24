@@ -37,7 +37,8 @@ public class BOJ18428 {
 
 	static void Comb(int start, int cnt) {
 		if (cnt == 3) {
-			play();
+			if (play())
+				answer = true;
 			return;
 		} else {
 			for (int i = start; i < num; i++) {
@@ -53,7 +54,8 @@ public class BOJ18428 {
 		}
 	}
 
-	static void play() {
+	static boolean play() {
+		boolean flag = true;
 		char[][] tmap = new char[N][N];
 
 		for (int i = 0; i < N; i++)
@@ -68,22 +70,30 @@ public class BOJ18428 {
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
 				if (tmap[i][j] == 'T') {
-					for (int d = 0; d < 4; d++) {
-						if (check(i, j, d, tmap)) {
-
-							answer = true;
-						}
-					}
+					if (!check(i, j, tmap))
+						flag = false;
 				}
 			}
 		}
-
+		return flag;
 	}
 
-	static boolean check(int r, int c, int dir, char[][] tmap) {
-		int nr = r + dr[dir];
-		int nc = c + dc[dir];
+	static boolean check(int r, int c, char[][] tmap) {
 
+		for (int i = 0; i < 4; i++) {
+			int nr = r;
+			int nc = c;
+			while (true) {
+				nr += dr[i];
+				nc += dc[i];
+
+				if (!isIn(nr, nc) || tmap[nr][nc] == 'O')
+					break;
+				if (tmap[nr][nc] == 'S')
+					return false;
+			}
+		}
+		return true;
 	}
 
 	static boolean isIn(int r, int c) {
