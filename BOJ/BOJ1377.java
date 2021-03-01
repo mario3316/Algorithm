@@ -1,49 +1,43 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.PriorityQueue;
+import java.util.Arrays;
+import java.util.Scanner;
 
-public class BOJ137 {
+public class BOJ1377 {
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        PriorityQueue<Pair> queue = new PriorityQueue<>();
-        int max = Integer.MIN_VALUE;
+	static class Point implements Comparable<Point> {
+		int num, index;
 
-        for(int i=0; i<N; i++) {
-            queue.add(new Pair(Integer.parseInt(br.readLine()), i));
-        }
+		Point(int num, int index) {
+			this.num = num;
+			this.index = index;
+		}
 
-        for(int i=0; i<N; i++) {
-            int index = queue.poll().index;
-            if(index>i) {
-                if(max<index-i)
-                    max=index-i;
-            }
-        }
+		@Override
+		public int compareTo(Point p) {
+			return this.num - p.num;
+		}
+	}
 
-        if(max==Integer.MIN_VALUE)
-            System.out.println(1);
-        else
-            System.out.println(max+1);
-    }
+	static int N;
+	static Point[] points;
 
-    static class Pair implements Comparable<Pair>{
-        int num;
-        int index;
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		N = sc.nextInt();
+		points = new Point[N + 1];
+		points[0] = new Point(-1, 0);
 
-        public Pair(int num, int index) {
-            this.num = num;
-            this.index = index;
-        }
+		for (int i = 1; i <= N; i++) {
+			points[i] = new Point(sc.nextInt(), i);
+		}
 
-        @Override
-        public int compareTo(Pair pair) {
-            if(this.num==pair.num)
-                return this.index > pair.index ? 1 : -1;
-            else
-                return this.num > pair.num ? 1 : -1;
-        }
-    }
+		Arrays.sort(points);
+
+		int cnt = 0;
+		for (int i = 1; i <= N; i++) {
+			cnt = Math.max(cnt, points[i].index - i);
+		}
+
+		System.out.println(cnt + 1);
+	}
+
 }
