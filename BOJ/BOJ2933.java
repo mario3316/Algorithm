@@ -37,11 +37,10 @@ public class BOJ2933 {
 
 		for (int i = 0; i < N; i++) {
 			throwStick(i);
-//			System.out.println("===========");
-//			for (int j = 0; j < R; j++) {
-//				System.out.println(new String(MAP[j]));
-//			}
-//			System.out.println("===========");
+		}
+
+		for (int j = 0; j < R; j++) {
+			System.out.println(new String(MAP[j]));
 		}
 
 	}
@@ -53,19 +52,12 @@ public class BOJ2933 {
 				if (MAP[level][i] == 'x') {
 					MAP[level][i] = '.';
 
-					// 왼쪽에서 부셨으면 위에 붙어있는 클러스터, 오른쪽 붙어 있는 클러스터가 공중에 떠있는지 검사
-					for (int j = 0; j <= 3; j += 3) { // 상: 0, 우 : 3
-						if (isIn(level + dr[j], i + dc[j])
-								&& MAP[level + dr[j]][i + dc[j]] == 'x') {
-							if (!check(level + dr[j], i + dc[j])) {
+					// 주위 클러스터가 공중에 떠있는지 검사
+					for (int d = 0; d < 4; d++) {
+						if (isIn(level + dr[d], i + dc[d])
+								&& MAP[level + dr[d]][i + dc[d]] == 'x') {
+							if (!check(level + dr[d], i + dc[d])) {
 								// 공중에 떠있다면 클러스터를 내림
-
-								System.out.println("===========");
-								for (int d = 0; d < R; d++) {
-									System.out.println(new String(MAP[d]));
-								}
-								System.out.println("===========");
-
 								dropCluster();
 							}
 						}
@@ -79,16 +71,12 @@ public class BOJ2933 {
 				if (MAP[level][i] == 'x') {
 					MAP[level][i] = '.';
 
-					// 오른쪽에서 부셨으면 위에 붙어있는 클러스터, 왼쪽에 붙어 있는 클러스터가 공중에 떠있는지 검사
-					for (int j = 0; j <= 2; j += 2) { // 상: 0, 좌 : 2
-						if (isIn(level + dr[j], i + dc[j])
-								&& MAP[level + dr[j]][i + dc[j]] == 'x') {
-							if (!check(level + dr[j], i + dc[j])) {
-								System.out.println("===========");
-								for (int d = 0; d < R; d++) {
-									System.out.println(new String(MAP[d]));
-								}
-								System.out.println("===========");
+					// 주위 클러스터가 공중에 떠있는지 검사
+					for (int d = 0; d < 4; d++) {
+						if (isIn(level + dr[d], i + dc[d])
+								&& MAP[level + dr[d]][i + dc[d]] == 'x') {
+							if (!check(level + dr[d], i + dc[d])) {
+								// 공중에 떠있다면 클러스터를 내림
 								dropCluster();
 							}
 						}
@@ -103,17 +91,16 @@ public class BOJ2933 {
 	static void dropCluster() {
 		// visited = true 인것들이 클러스터
 
-		int min = 0;
+		int min = Integer.MAX_VALUE;
 
 		for (int c = 0; c < C; c++) {
 			for (int r = R - 1; r >= 0; r--) {
 				if (visited[r][c]) {
 					int level = r, cnt = 0;
-					while (level < R && MAP[level][c] != 'x') {
+					while (level + 1 < R && MAP[level + 1][c] != 'x') {
 						level++;
 						cnt++;
 					}
-					System.out.println(r + " / " + c + " / " + cnt);
 
 					min = Math.min(min, cnt);
 					break;
@@ -123,7 +110,6 @@ public class BOJ2933 {
 		// 최대로 내릴수 있는 층수 계산
 		// 내릴 수 있는 층수 중 가장 작은 것을 골라야 겹치지 않음
 
-		System.out.println(min);
 		for (int r = R - 1; r >= 0; r--) {
 			for (int c = 0; c < C; c++) {
 				if (visited[r][c]) {
@@ -159,18 +145,6 @@ public class BOJ2933 {
 				}
 			}
 		}
-
-		System.out.println("=====");
-		for (int i = 0; i < R; i++) {
-			for (int j = 0; j < C; j++) {
-				if (visited[i][j])
-					System.out.print("1");
-				else
-					System.out.print("0");
-			}
-			System.out.println();
-		}
-		System.out.println("=====");
 
 		return flag;
 	}
