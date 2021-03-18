@@ -74,6 +74,8 @@
   - ~~7576 토마토~~
   - ~~1759 암호 만들기~~
   - ~~16236 아기 상어~~
+  - ~~1717 집합의 표현~~
+  - ~~16562 친구비~~
   - DP, LIS , MST 공부
 
 - SW Expert
@@ -510,5 +512,42 @@
     - StringTokenizer의 토큰을 세어주는 함수
 
   - SWEA1233에 대해
+
     - 위 두개 함수를 알았으면 Tree의 가장 말단 노드(Token이 2개거나 3개인 노드) 만 숫자여야 하고 그 위 모든 노드(Token이 4개인 노드) 들은 연산자여야 함을 판별해서 쉽게 풀수있었다.
     - 나는 ArrayList로 Tree를 구현해서 일일이 중위 순회로 수식을 검사했다... ㅠ
+
+  - Union-Find 알고리즘
+
+    - Disjoint Set 을 표현할때 사용하는 알고리즘
+      - Disjoint Set 이란 : 서로 중복되지 않는 부분 집합로 나눠진 원소들에 대한 정보를 저장하는 자료 구조
+
+    ```
+    static void makeSet(int n) {
+    	parent = new int[n + 1];
+
+    	for (int i = 0; i <= n; i++) {
+    		parent[i] = i;
+    	}
+    }
+
+    static boolean isConnected(int a, int b) {
+      return find(a) == find(b);
+    }
+
+    static int find(int x) {
+      if (parent[x] == x)
+        return x;
+      else
+        return parent[x] = find(parent[x]);
+      // 최종 부모를 찾았으면 거슬러 올라가면서 parent를 모두 최종 부모로 바꿔준다.
+      // 그래야 다음에 찾을때 처음부터 내려가면서 찾지않고 depth = 1 만큼만 찾는다.
+    }
+
+    static void union(int x, int y) {
+      x = find(x);
+      y = find(y);
+
+      if (x != y)
+        parent[x] = y;
+    }
+    ```
