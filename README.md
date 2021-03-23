@@ -552,3 +552,73 @@
         parent[x] = y;
     }
     ```
+
+  - 다익스트라 알고리즘
+
+    - 양의 가중치를 가진 그래프에서 최단 경로
+
+    - 1. 인접리스트 이중 for문으로 구현
+
+    ```
+    static void Dijkstra() {
+      Arrays.fill(dist, Integer.MAX_VALUE);
+      dist[K] = 0;
+      // 시작 노드 초기화
+
+      // 시작노드와 연결되어 있는 노드들 까지의 거리 update
+      for (Node n : G[K]) {
+        if (!visited[n.v]) {
+          dist[n.v] = n.w;
+        }
+      }
+
+      for (int i = 1; i <= V; i++) {
+        int cur = 1;
+        int min = Integer.MAX_VALUE;
+
+        for (int j = 1; j <= V; j++) {
+          if (!visited[j] && dist[j] < min) {
+            min = dist[j];
+            cur = j;
+          }
+        }
+        // 방문하지 않은 노드들중 dist 가 최소인 것의 dist 와 인덱스를 구함
+
+        visited[cur] = true;
+        for (Node n : G[cur]) {
+          if (!visited[n.v]) {
+            dist[n.v] = Math.min(dist[n.v], dist[cur] + n.w);
+          }
+        }
+        // 기존 dist 보다 cur를 경유해서 가는게 더 빠르면 dist를 업데이트
+      }
+
+    }
+    ```
+
+    - 2. 우선순위 큐를 이용한 구현
+
+    ```
+    static void Dijkstra() {
+      PriorityQueue<Node> Q = new PriorityQueue<>();
+      Arrays.fill(dist, Integer.MAX_VALUE);
+      Q.offer(new Node(K, 0));
+      dist[K] = 0;
+
+      while (!Q.isEmpty()) {
+        Node current = Q.poll();
+
+        // 중요!!
+        // 현재 노드의 weight가 dist보다 크면 비교하지 않는다. (가지치기, 불필요하게 pq에 삽입을 방지 )
+        if (current.w > dist[current.v])
+          continue;
+
+        for (Node n : G[current.v]) {
+          if (dist[n.v] > dist[current.v] + n.w) {
+            dist[n.v] = dist[current.v] + n.w;
+            Q.offer(new Node(n.v, dist[n.v]));
+          }
+        }
+      }
+    }
+    ```

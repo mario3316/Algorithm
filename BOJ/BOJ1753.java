@@ -59,7 +59,6 @@ public class BOJ1753 {
     static void Dijkstra() {
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[K] = 0;
-        visited[K] = true;
         // 시작 노드 초기화
 
         // 시작노드와 연결되어 있는 노드들 까지의 거리 update
@@ -88,9 +87,6 @@ public class BOJ1753 {
                 }
             }
             // 기존 dist 보다 cur를 경유해서 가는게 더 빠르면 dist를 업데이트
-
-            // System.out.println(Arrays.toString(visited));
-            // System.out.println(Arrays.toString(dist));
         }
 
     }
