@@ -8,8 +8,25 @@
 - BFS/DFS
 - Back Tracking
 - Greedy
-- **_DP (LIS)_**
 - Hash
+- 문자열 처리
+- Stack / Queue
+- permutation, combination, next_permutation
+- MST ( kruskal, prim )
+- **_그래프_**
+  - 최단경로 Dijkstra, Bellman-ford
+  - MST ( Kruskal, Prim )
+    - Union-Find
+- DP
+- Divide & Conquer
+  - Binary Search
+  - Merge Sort
+  - Quick Sort
+- Sorting
+  - Heap Sort (max, min)
+- Binary Search Tree
+- 문자열 매칭 KMP, Trie
+- Two Pointer
 
 ---
 
