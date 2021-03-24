@@ -11,13 +11,14 @@
 - Hash
 - 문자열 처리
 - Stack / Queue
-- permutation, combination, next_permutation
+- Permutation, Combination, Next_permutation
 - MST ( kruskal, prim )
 - **_그래프_**
-  - 최단경로 Dijkstra, Bellman-ford
-  - MST ( Kruskal, Prim )
+  - 최단경로 Dijkstra, Bellman-ford, Floyd-Warshall
+  - MST (Kruskal, Prim)
     - Union-Find
 - DP
+  - LIS (Longest Increasing Subsequence)
 - Divide & Conquer
   - Binary Search
   - Merge Sort
@@ -123,6 +124,7 @@
   - ~~6808 규영이와 인영이의 카드게임~~
   - ~~1949 등산로 조성~~
   - ~~1767 프로세서 연결하기~~
+  - ~~1251 하나로~~
 
 - 정올
   - ~~1828 냉장고~~
@@ -661,5 +663,57 @@
           - 사이클이 발생하면 해당 간선은 연결 x
 
     - 크루스칼 구현
+
       - 간선 리스트 필요 ( from, to , weight)
       - n-1개 간선이 선택될때 까지 반복
+
+      ```
+      static int[] parent;
+      static ArrayList<Edge> list;
+
+      static void makeSet() {
+        parent = new int[N];
+
+        for (int i = 0; i < N; i++)
+          parent[i] = i;
+      }
+
+      static void union(int x, int y) {
+        x = find(x);
+        y = find(y);
+
+        if (x != y) {
+          parent[x] = y;
+        }
+      }
+
+      static int find(int x) {
+        if (parent[x] == x)
+          return x;
+        else
+          return parent[x] = find(parent[x]);
+      }
+
+      static boolean isConnected(int x, int y) {
+        return find(x) == find(y);
+      }
+
+      static double kruskal() {
+        double sum = 0;
+        list = new ArrayList<>();
+
+        makeSet(); // 사이클 검사를 위한 disjoint set 생성
+        makeList(); // 간선 정보 입력
+
+        Collections.sort(list); // 가중치 오름차순으로 정렬
+
+        for (Edge e : list) {
+          if (!isConnected(e.from, e.to)) {
+            sum += e.weight;
+            union(e.from, e.to);
+          }
+        }
+
+        return sum;
+      }
+      ```
