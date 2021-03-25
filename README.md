@@ -125,6 +125,7 @@
   - ~~1949 등산로 조성~~
   - ~~1767 프로세서 연결하기~~
   - ~~1251 하나로~~
+  - ~~3307 최장 증가 수열~~
 
 - 정올
   - ~~1828 냉장고~~
@@ -540,53 +541,86 @@
     - 위 두개 함수를 알았으면 Tree의 가장 말단 노드(Token이 2개거나 3개인 노드) 만 숫자여야 하고 그 위 모든 노드(Token이 4개인 노드) 들은 연산자여야 함을 판별해서 쉽게 풀수있었다.
     - 나는 ArrayList로 Tree를 구현해서 일일이 중위 순회로 수식을 검사했다... ㅠ
 
-  - Union-Find 알고리즘
+  - 최장 증가 수열 ( Longest Increasing Subsequence )
 
-    - Disjoint Set 을 표현할때 사용하는 알고리즘
-      - Disjoint Set 이란 : 서로 중복되지 않는 부분 집합로 나눠진 원소들에 대한 정보를 저장하는 자료 구조
+    - Dynamic Programming
+      - 인덱스 i를 증가시키면서 i보다 작고 0보다 큰 범위의 값들과 비교
+      - j보다 i의 값이 크면 현재 dp[i], dp[j] + 1 값과 비교하여 dp[i]에 삽입
 
     ```
-    static void makeSet(int n) {
-    	parent = new int[n + 1];
+    static int LIS() {
+      int max = 0;
 
-    	for (int i = 0; i <= n; i++) {
-    		parent[i] = i;
-    	}
+      for (int i = 0; i < N; i++)
+        dp[i] = 1;
+
+      for (int i = 1; i < N; i++) {
+        for (int j = 0; j < i; j++) {
+          if (arr[i] > arr[j]) {
+            dp[i] = Math.max(dp[i], dp[j] + 1);
+          }
+        }
+      }
+
+      for (int i = 0; i < N; i++) {
+        max = Math.max(max, dp[i]);
+      }
+
+      return max;
     }
+    ```
 
-    static boolean isConnected(int a, int b) {
-      return find(a) == find(b);
-    }
+  - Union-Find 알고리즘
 
-    static int find(int x) {
-      if (parent[x] == x)
-        return x;
-      else
-        return parent[x] = find(parent[x]);
-      // 최종 부모를 찾았으면 거슬러 올라가면서 parent를 모두 최종 부모로 바꿔준다.
-      // 그래야 다음에 찾을때 처음부터 내려가면서 찾지않고 depth = 1 만큼만 찾는다.
-    }
+  - Disjoint Set 을 표현할때 사용하는 알고리즘
+    - Disjoint Set 이란 : 서로 중복되지 않는 부분 집합로 나눠진 원소들에 대한 정보를 저장하는 자료 구조
 
-    static void union(int x, int y) {
-      x = find(x);
-      y = find(y);
+  ```
+
+  static void makeSet(int n) {
+  parent = new int[n + 1];
+
+  for (int i = 0; i <= n; i++) {
+  parent[i] = i;
+  }
+  }
+
+  static boolean isConnected(int a, int b) {
+  return find(a) == find(b);
+  }
+
+  static int find(int x) {
+  if (parent[x] == x)
+  return x;
+  else
+  return parent[x] = find(parent[x]);
+  // 최종 부모를 찾았으면 거슬러 올라가면서 parent를 모두 최종 부모로 바꿔준다.
+  // 그래야 다음에 찾을때 처음부터 내려가면서 찾지않고 depth = 1 만큼만 찾는다.
+  }
+
+  static void union(int x, int y) {
+  x = find(x);
+  y = find(y);
 
       if (x != y)
         parent[x] = y;
-    }
-    ```
+
+  }
+
+  ```
 
   - 다익스트라 알고리즘
 
-    - 양의 가중치를 가진 그래프에서 최단 경로
+  - 양의 가중치를 가진 그래프에서 최단 경로
 
-    - 1. 인접리스트 이중 for문으로 구현
+  - 1. 인접리스트 이중 for문으로 구현
 
-    ```
-    static void Dijkstra() {
-      Arrays.fill(dist, Integer.MAX_VALUE);
-      dist[K] = 0;
-      // 시작 노드 초기화
+  ```
+
+  static void Dijkstra() {
+  Arrays.fill(dist, Integer.MAX_VALUE);
+  dist[K] = 0;
+  // 시작 노드 초기화
 
       // 시작노드와 연결되어 있는 노드들 까지의 거리 update
       for (Node n : G[K]) {
@@ -616,17 +650,19 @@
         // 기존 dist 보다 cur를 경유해서 가는게 더 빠르면 dist를 업데이트
       }
 
-    }
-    ```
+  }
 
-    - 2. 우선순위 큐를 이용한 구현
+  ```
 
-    ```
-    static void Dijkstra() {
-      PriorityQueue<Node> Q = new PriorityQueue<>();
-      Arrays.fill(dist, Integer.MAX_VALUE);
-      Q.offer(new Node(K, 0));
-      dist[K] = 0;
+  - 2. 우선순위 큐를 이용한 구현
+
+  ```
+
+  static void Dijkstra() {
+  PriorityQueue<Node> Q = new PriorityQueue<>();
+  Arrays.fill(dist, Integer.MAX_VALUE);
+  Q.offer(new Node(K, 0));
+  dist[K] = 0;
 
       while (!Q.isEmpty()) {
         Node current = Q.poll();
@@ -643,77 +679,83 @@
           }
         }
       }
-    }
-    ```
+
+  }
+
+  ```
 
   - 최소 신장 트리 (MST)
 
-    - Minimum Spanning Tree 조건
+  - Minimum Spanning Tree 조건
 
-      - 그래프의 모든 노드를 포함해야한다.
-      - 간선의 가중치의 합이 최소여야 한다.
-      - 모든 노드가 서로 연결되어 있어야 한다.
-      - 사이클이 존재하면 안된다.
+    - 그래프의 모든 노드를 포함해야한다.
+    - 간선의 가중치의 합이 최소여야 한다.
+    - 모든 노드가 서로 연결되어 있어야 한다.
+    - 사이클이 존재하면 안된다.
 
-    - 크루스칼 알고리즘 (Kruskal)
+  - 크루스칼 알고리즘 (Kruskal)
 
-      - 모든 간선들을 가중치 오름차순으로 정렬
-      - 가중치가 작은 간선부터 차례대로 연결
-        - 이때, 사이클이 발생하는지 검사 ( Union-Find 알고리즘 )
-          - 사이클이 발생하면 해당 간선은 연결 x
+    - 모든 간선들을 가중치 오름차순으로 정렬
+    - 가중치가 작은 간선부터 차례대로 연결
+      - 이때, 사이클이 발생하는지 검사 ( Union-Find 알고리즘 )
+        - 사이클이 발생하면 해당 간선은 연결 x
 
-    - 크루스칼 구현
+  - 크루스칼 구현
 
-      - 간선 리스트 필요 ( from, to , weight)
-      - n-1개 간선이 선택될때 까지 반복
+    - 간선 리스트 필요 ( from, to , weight)
+    - n-1개 간선이 선택될때 까지 반복
 
-      ```
-      static int[] parent;
-      static ArrayList<Edge> list;
+    ```
+    static int[] parent;
+    static ArrayList<Edge> list;
 
-      static void makeSet() {
-        parent = new int[N];
+    static void makeSet() {
+      parent = new int[N];
 
-        for (int i = 0; i < N; i++)
-          parent[i] = i;
+      for (int i = 0; i < N; i++)
+        parent[i] = i;
+    }
+
+    static void union(int x, int y) {
+      x = find(x);
+      y = find(y);
+
+      if (x != y) {
+        parent[x] = y;
       }
+    }
 
-      static void union(int x, int y) {
-        x = find(x);
-        y = find(y);
+    static int find(int x) {
+      if (parent[x] == x)
+        return x;
+      else
+        return parent[x] = find(parent[x]);
+    }
 
-        if (x != y) {
-          parent[x] = y;
+    static boolean isConnected(int x, int y) {
+      return find(x) == find(y);
+    }
+
+    static double kruskal() {
+      double sum = 0;
+      list = new ArrayList<>();
+
+      makeSet(); // 사이클 검사를 위한 disjoint set 생성
+      makeList(); // 간선 정보 입력
+
+      Collections.sort(list); // 가중치 오름차순으로 정렬
+
+      for (Edge e : list) {
+        if (!isConnected(e.from, e.to)) {
+          sum += e.weight;
+          union(e.from, e.to);
         }
       }
 
-      static int find(int x) {
-        if (parent[x] == x)
-          return x;
-        else
-          return parent[x] = find(parent[x]);
-      }
+      return sum;
+    }
+    ```
 
-      static boolean isConnected(int x, int y) {
-        return find(x) == find(y);
-      }
+  ```
 
-      static double kruskal() {
-        double sum = 0;
-        list = new ArrayList<>();
-
-        makeSet(); // 사이클 검사를 위한 disjoint set 생성
-        makeList(); // 간선 정보 입력
-
-        Collections.sort(list); // 가중치 오름차순으로 정렬
-
-        for (Edge e : list) {
-          if (!isConnected(e.from, e.to)) {
-            sum += e.weight;
-            union(e.from, e.to);
-          }
-        }
-
-        return sum;
-      }
-      ```
+  ```
