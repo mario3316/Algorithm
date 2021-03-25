@@ -126,6 +126,7 @@
   - ~~1767 프로세서 연결하기~~
   - ~~1251 하나로~~
   - ~~3307 최장 증가 수열~~
+  - ~~1263 사람네트워크2~~
 
 - 정올
   - ~~1828 냉장고~~
@@ -578,32 +579,32 @@
   ```
 
   static void makeSet(int n) {
-  parent = new int[n + 1];
+    parent = new int[n + 1];
 
-  for (int i = 0; i <= n; i++) {
-  parent[i] = i;
-  }
+    for (int i = 0; i <= n; i++) {
+    parent[i] = i;
+    }
   }
 
   static boolean isConnected(int a, int b) {
-  return find(a) == find(b);
+    return find(a) == find(b);
   }
 
   static int find(int x) {
-  if (parent[x] == x)
-  return x;
-  else
-  return parent[x] = find(parent[x]);
-  // 최종 부모를 찾았으면 거슬러 올라가면서 parent를 모두 최종 부모로 바꿔준다.
-  // 그래야 다음에 찾을때 처음부터 내려가면서 찾지않고 depth = 1 만큼만 찾는다.
+    if (parent[x] == x)
+      return x;
+    else
+      return parent[x] = find(parent[x]);
+      // 최종 부모를 찾았으면 거슬러 올라가면서 parent를 모두 최종 부모로 바꿔준다.
+      // 그래야 다음에 찾을때 처음부터 내려가면서 찾지않고 depth = 1 만큼만 찾는다.
   }
 
   static void union(int x, int y) {
-  x = find(x);
-  y = find(y);
+    x = find(x);
+    y = find(y);
 
-      if (x != y)
-        parent[x] = y;
+    if (x != y)
+      parent[x] = y;
 
   }
 
@@ -618,38 +619,37 @@
   ```
 
   static void Dijkstra() {
-  Arrays.fill(dist, Integer.MAX_VALUE);
-  dist[K] = 0;
-  // 시작 노드 초기화
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    dist[K] = 0;
+    // 시작 노드 초기화
 
-      // 시작노드와 연결되어 있는 노드들 까지의 거리 update
-      for (Node n : G[K]) {
+    // 시작노드와 연결되어 있는 노드들 까지의 거리 update
+    for (Node n : G[K]) {
+      if (!visited[n.v]) {
+        dist[n.v] = n.w;
+      }
+    }
+
+    for (int i = 1; i <= V; i++) {
+      int cur = 1;
+      int min = Integer.MAX_VALUE;
+
+      for (int j = 1; j <= V; j++) {
+        if (!visited[j] && dist[j] < min) {
+          min = dist[j];
+          cur = j;
+        }
+      }
+      // 방문하지 않은 노드들중 dist 가 최소인 것의 dist 와 인덱스를 구함
+
+      visited[cur] = true;
+      for (Node n : G[cur]) {
         if (!visited[n.v]) {
-          dist[n.v] = n.w;
+          dist[n.v] = Math.min(dist[n.v], dist[cur] + n.w);
         }
       }
-
-      for (int i = 1; i <= V; i++) {
-        int cur = 1;
-        int min = Integer.MAX_VALUE;
-
-        for (int j = 1; j <= V; j++) {
-          if (!visited[j] && dist[j] < min) {
-            min = dist[j];
-            cur = j;
-          }
-        }
-        // 방문하지 않은 노드들중 dist 가 최소인 것의 dist 와 인덱스를 구함
-
-        visited[cur] = true;
-        for (Node n : G[cur]) {
-          if (!visited[n.v]) {
-            dist[n.v] = Math.min(dist[n.v], dist[cur] + n.w);
-          }
-        }
-        // 기존 dist 보다 cur를 경유해서 가는게 더 빠르면 dist를 업데이트
-      }
-
+      // 기존 dist 보다 cur를 경유해서 가는게 더 빠르면 dist를 업데이트
+    }
   }
 
   ```
