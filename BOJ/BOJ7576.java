@@ -12,9 +12,17 @@ public class BOJ7576 {
 	static int[][] visited;
 	static int[] dr = { -1, 1, 0, 0 };
 	static int[] dc = { 0, 0, -1, 1 };
+	static int answer = 0;
 	static Queue<int[]> Q = new LinkedList<>();
 
 	public static void main(String[] args) throws IOException {
+
+		// <로직>
+		// 1. 시작시 익은 토마토들로 부터 BFS 시작
+		// 2. visited 배열에 최단 거리를 담으면서 진행
+		// 3. BFS가 끝나면 안 익은 토마토가 있는지 확인
+		// 4. 없으면 visited 배열 중 ( 거리들 중 ) 최대 값을 출력
+
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -34,16 +42,10 @@ public class BOJ7576 {
 		}
 
 		BFS();
+		
 		if (!checkMap()) {
 			System.out.println("-1");
 		} else {
-			int answer = 0;
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < M; j++) {
-					answer = Math.max(answer, visited[i][j]);
-				}
-			}
-
 			System.out.println(answer);
 		}
 	}
@@ -67,6 +69,7 @@ public class BOJ7576 {
 	static boolean checkMap() {
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
+				answer = Math.max(answer, visited[i][j]);
 				if (MAP[i][j] == 0 && visited[i][j] == 0)
 					return false;
 			}

@@ -64,7 +64,7 @@ public class BOJ17836 {
 
 			if (cr == N - 1 && cc == M - 1) {
 				break;
-			}
+			} // 공주를 찾으면 종료
 			if (fromSword == 0 && MAP[cr][cc] == 2) {
 				fromSword = dist[cr][cc]
 						+ Math.abs((N - 1 - cr) + (M - 1 - cc));
@@ -82,13 +82,13 @@ public class BOJ17836 {
 			}
 		}
 
-		if (fromSword != 0) {
+		if (fromSword != 0) { // 검을 찾았을 때
 			if (dist[N - 1][M - 1] != 0) {
 				answer = Math.min(fromSword, dist[N - 1][M - 1]);
 			} else {
 				answer = fromSword;
 			}
-		} else {
+		} else { // 검을 못찾았을 때
 			answer = dist[N - 1][M - 1];
 		}
 	}
