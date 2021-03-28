@@ -55,7 +55,7 @@ public class BOJ1976 {
 
     static void connect() {
         for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= N; j++) {
+            for (int j = i + 1; j <= N; j++) { // 인접그래프 대칭
                 if (adj[i][j] == 1) {
                     union(i, j);
                 }
