@@ -34,7 +34,7 @@ public class BOJ5567 {
 		Queue<int[]> Q = new LinkedList<>();
 		boolean[] visited = new boolean[N + 1];
 
-		Q.add(new int[] { start, 0 });
+		Q.add(new int[] { start, 0 }); // 0 : node ¹øÈ£ , 1 : ±íÀÌ
 		visited[start] = true;
 
 		while (!Q.isEmpty()) {
