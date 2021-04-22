@@ -1,11 +1,5 @@
-import java.util.Arrays;
 
-class Solutiondd {
-
-    public static void main(String[] args) {
-        Solutiondd s = new Solutiondd();
-        System.out.println(s.solution(4, 4, new int[][] { { 3, 2 }, { 2, 4 } }));
-    }
+class Solution {
 
     public int solution(int m, int n, int[][] puddles) {
         int answer = 0;
