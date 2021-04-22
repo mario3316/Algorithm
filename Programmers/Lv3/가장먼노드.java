@@ -1,45 +1,53 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 class Solution {
     public int solution(int n, int[][] edge) {
         int answer = 0;
 
-        ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
-        for (int i = 0; i < edge.length; i++) {
-            list.add(new ArrayList<Integer>());
+        ArrayList<Integer>[] edges = new ArrayList[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            edges[i] = new ArrayList<>();
         }
 
-        int a, b;
-        for (int[] node : edge) {
-            a = node[0];
-            b = node[1];
-            list.get(a).add(b);
-            list.get(b).add(a);
-        }
+        for (int[] e : edge) {
+            edges[e[0]].add(e[1]);
+            edges[e[1]].add(e[0]);
+        } // 그래프 연결
 
-        int[] dist = new int[n + 1];
-        boolean[] visited = new boolean[n + 1];
-        Queue<Integer> q = new LinkedList<>();
-        q.add(1);
-        visited[0] = visited[1] = true;
-        int now;
-        while (!q.isEmpty()) {
-            now = q.poll();
-            for (int v : list.get(now)) {
-                if (!visited[v]) {
-                    dist[v] = dist[now] + 1;
-                    visited[v] = true;
-                    q.add(v);
+        answer = BFS(1, n, edges);
+        return answer;
+    }
+
+    static int BFS(int start, int n, ArrayList<Integer>[] edges) {
+        int count = 1;
+        int max = 1;
+
+        Queue<Integer> Q = new LinkedList<>();
+        int[] visited = new int[n + 1];
+        Q.add(start);
+        visited[start] = 1;
+
+        while (!Q.isEmpty()) {
+            int cur = Q.poll();
+
+            for (int next : edges[cur]) {
+                if (visited[next] == 0) {
+                    Q.add(next);
+                    visited[next] = visited[cur] + 1;
                 }
+            }
+
+            if (visited[cur] > max) {
+                max = visited[cur];
+                count = 1;
+            } else if (visited[cur] == max) {
+                count++;
             }
         }
 
-        int max = 0;
-        for (int cnt : dist) {
-            if (max < cnt) {
-                max = cnt;
-                answer = 1;
-            } else if (max == cnt)
-                answer++;
-        }
-        return answer;
+        return count;
     }
 }
